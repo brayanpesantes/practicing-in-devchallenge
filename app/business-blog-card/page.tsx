@@ -1,6 +1,6 @@
 import Image from "next/image";
-import ImageHeroBusiness from "../images/hero-image-business-card.png";
-import ImageBusiness from "../images/avatar-image-business-card.png";
+import ImageHeroBusiness from "../images/hero-image-business-card.webp";
+import ImageBusiness from "../images/avatar-image-business-card.webp";
 export default function BusinessBlogCardPage() {
   return (
     <div className="w-screen min-h-screen flex items-center justify-center bg-[#F2F5F9]">
