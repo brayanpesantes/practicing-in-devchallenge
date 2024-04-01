@@ -10,6 +10,8 @@ const config: Config = {
     extend: {
       fontFamily: {
         sora: "var(--font-sora)",
+        lato: "var(--font-lato)",
+        poppins: "var(--font-poppins)",
       },
       boxShadow: {
         "minimal-card": "0px 30px 100px 0px rgba(17, 23, 41, 0.05)",
