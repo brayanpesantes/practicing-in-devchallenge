@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { sora } from "@/utils/typographies";
+import { sora, lato, poppins } from "@/utils/typographies";
 
 export const metadata: Metadata = {
   title: "Practicing in dev challenge",
@@ -13,7 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sora.variable}`}>
+    <html
+      lang="en"
+      className={`${sora.variable} ${lato.variable} ${poppins.variable}`}
+    >
       <body className="">{children}</body>
     </html>
   );
