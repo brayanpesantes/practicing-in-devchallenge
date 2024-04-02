@@ -12,12 +12,16 @@ const config: Config = {
         sora: "var(--font-sora)",
         lato: "var(--font-lato)",
         poppins: "var(--font-poppins)",
+        beVietnamPro: "var(--font-beVietnamPro)",
       },
       boxShadow: {
         "minimal-card": "0px 30px 100px 0px rgba(17, 23, 41, 0.05)",
       },
+      backgroundImage: {
+        contact: "url('/images/bg-image.svg')",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };
 export default config;
