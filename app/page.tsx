@@ -5,6 +5,7 @@ export default function Home() {
       <a href="/business-blog-card">business blog card</a>
       <a href="/testimonial">Testimonial</a>
       <a href="/contact">Contact</a>
+      <a href="/home">Home Page</a>
     </main>
   );
 }
