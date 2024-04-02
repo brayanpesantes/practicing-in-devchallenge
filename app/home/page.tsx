@@ -1,12 +1,12 @@
 "use client";
-import { useState } from "react";
-import Header from "./_components/Header";
 import cn from "@/utils/cn";
-import ImageHero from "../images/hero-image-simple-homepage.webp";
 import Image from "next/image";
+import { useState } from "react";
+import ImageHero from "../images/hero-image-simple-homepage.webp";
 import { ItemList } from "../testimonial/_components/ItemList";
+import Header from "./_components/Header";
 export default function HomePage() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   const toggleDarkMode = (): void => {
     setIsDarkMode(!isDarkMode);
@@ -14,8 +14,8 @@ export default function HomePage() {
   return (
     <div
       className={cn([
-        "font-poppins",
-        "transition  duration-150 ease-in-out dark:bg-[#111729]",
+        "font-poppins overflow-x-hidden",
+        "transition  duration-150 ease-in-out dark:bg-[#111729] min-h-screen",
         {
           dark: isDarkMode,
         },
