@@ -1,9 +1,9 @@
-import Image from "next/image";
-import React from "react";
 import cn from "@/utils/cn";
-import SunIcon from "../../images/Sun_fill.svg";
+import Image from "next/image";
 import MoonIconDark from "../../images/Moon_fill.svg";
 import MoonIcon from "../../images/Moon_fill_light.svg";
+import SunIconDark from "../../images/Sun_fill.svg";
+import SunIcon from "../../images/Sun_fill_light.svg";
 
 type Props = {
   readonly mode: boolean;
@@ -23,15 +23,19 @@ export default function SwitchDarkMode({ mode, toggle }: Props) {
           "flex relative items-center  justify-between  w-full rounded-full px-1",
         ])}
       >
-        <Image src={SunIcon} alt="icon sun" className="size-4 z-20" />
         <Image
           src={mode ? MoonIcon : MoonIconDark}
           alt="icon sun"
           className="size-4 z-20"
         />
+        <Image
+          src={mode ? SunIconDark : SunIcon}
+          alt="icon sun"
+          className="size-4 z-20"
+        />
         <span
           className={cn([
-            "absolute transition-transform duration-300 bg-[#F2F9FE] dark:bg-black size-5 rounded-full -z-[1px]",
+            "absolute transition-transform duration-300 bg-[#F2F9FE] dark:bg-white size-5 rounded-full -z-[1px]",
             {
               "translate-x-[22px]": mode,
               "-translate-x-[1.5px]": !mode,
