@@ -1,4 +1,4 @@
-import { Sora, Lato, Poppins } from "next/font/google";
+import { Sora, Lato, Poppins, Be_Vietnam_Pro } from "next/font/google";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -18,4 +18,10 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-export { sora, lato, poppins };
+const beVietnamPro = Be_Vietnam_Pro({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-beVietnamPro",
+});
+
+export { sora, lato, poppins, beVietnamPro };

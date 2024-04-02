@@ -4,6 +4,7 @@ export default function Home() {
       <a href="/minimal-blog-card">mini blog card</a>
       <a href="/business-blog-card">business blog card</a>
       <a href="/testimonial">Testimonial</a>
+      <a href="/contact">Contact</a>
     </main>
   );
 }
