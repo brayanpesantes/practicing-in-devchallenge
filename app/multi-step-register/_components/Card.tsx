@@ -9,7 +9,7 @@ export default function Card({ children, className }: Props) {
   return (
     <div
       className={cn([
-        "w-[456px] p-10 bg-[#212936] border border-[#394150] rounded-xl",
+        "w-full md:w-[456px] p-5 md:p-10 bg-[#212936] border border-[#394150] rounded-xl",
         className,
       ])}
     >

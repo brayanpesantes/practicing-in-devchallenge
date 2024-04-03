@@ -14,6 +14,7 @@ const config: Config = {
         lato: "var(--font-lato)",
         poppins: "var(--font-poppins)",
         beVietnamPro: "var(--font-beVietnamPro)",
+        inter: "var(--font-inter)",
       },
       boxShadow: {
         "minimal-card": "0px 30px 100px 0px rgba(17, 23, 41, 0.05)",
