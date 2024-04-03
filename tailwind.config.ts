@@ -21,6 +21,7 @@ const config: Config = {
       },
       backgroundImage: {
         contact: "url('/images/bg-image.svg')",
+        "music-player": "url('/images/bg-music-player.webp')",
       },
     },
   },
