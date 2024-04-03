@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import Card from "./Card";
-import Topics from "./Topics";
 import { Button } from "@/components/ui/Button";
 import { useFormStepContext } from "@/context/FormStepContext";
+import { useState } from "react";
+import Card from "./Card";
+import Topics from "./Topics";
 
 export default function TopicInterested() {
-  const { handleChange } = useFormStepContext();
+  const { handleChange, goToNextStep } = useFormStepContext();
 
   const [checkboxes, setCheckboxes] = useState([
     { id: 1, label: "Software Development", checked: false },
@@ -36,6 +36,7 @@ export default function TopicInterested() {
         return item.label;
       });
     handleChange({ topic }, "topicsInterested");
+    goToNextStep();
   };
 
   return (

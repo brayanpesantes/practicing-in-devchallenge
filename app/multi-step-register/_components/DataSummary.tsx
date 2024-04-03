@@ -1,25 +1,27 @@
-import { useFormStepContext } from "@/context/FormStepContext";
-import React from "react";
-import Card from "./Card";
 import { Button } from "@/components/ui/Button";
+import { useFormStepContext } from "@/context/FormStepContext";
+import Card from "./Card";
 
 export default function DataSummary() {
-  const { formData } = useFormStepContext();
+  const { formData, goToNextStep } = useFormStepContext();
 
-  const handleNextStep = () => {};
+  const handleNextStep = () => {
+    const isConfirm = confirm("esta seguro");
+    if (isConfirm) goToNextStep();
+  };
 
   return (
     <Card>
       <h1 className="text-[#E5E7EB] text-xl">Summary</h1>
       <div className="mt-6">
         <p className="text-[#A1A1A9]">
-          Name:
+          <span>Name:</span>
           <span className="text-[#E5E7EB] ml-2">
             {formData?.personalInfo?.name}
           </span>
         </p>
         <p className="text-[#A1A1A9]">
-          Email:
+          <span>Email:</span>
           <span className="text-[#E5E7EB] ml-2">
             {formData?.personalInfo?.email}
           </span>
@@ -42,7 +44,7 @@ export default function DataSummary() {
           onClick={handleNextStep}
           className="px-7 py-3 rounded-full bg-[#845EEE] text-white hover:bg-[#652CD1]"
         >
-          Continue
+          Confirm
         </Button>
       </div>
     </Card>

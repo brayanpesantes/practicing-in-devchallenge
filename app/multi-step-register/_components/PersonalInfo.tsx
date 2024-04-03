@@ -1,10 +1,10 @@
 "use client";
+import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
+import { useFormStepContext } from "@/context/FormStepContext";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Card from "./Card";
-import { Button } from "@/components/ui/Button";
-import { useFormStepContext } from "@/context/FormStepContext";
 
 type Inputs = {
   name: string;
@@ -14,9 +14,10 @@ type Inputs = {
 export default function PersonalInfo() {
   const { control, handleSubmit } = useForm<Inputs>();
 
-  const { formData, handleChange } = useFormStepContext();
+  const { formData, handleChange, goToNextStep } = useFormStepContext();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
+    goToNextStep();
     handleChange(data, "personalInfo");
   };
 
@@ -53,7 +54,10 @@ export default function PersonalInfo() {
           />
         </div>
         <div className="mt-9 flex items-center justify-center">
-          <Button className="px-7 py-3 rounded-full bg-[#845EEE] text-white hover:bg-[#652CD1]">
+          <Button
+            className="px-7 py-3 rounded-full bg-[#845EEE] text-white hover:bg-[#652CD1]"
+            type="submit"
+          >
             Continue
           </Button>
         </div>
