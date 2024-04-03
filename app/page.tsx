@@ -7,6 +7,7 @@ export default function Home() {
       <a href="/contact">Contact</a>
       <a href="/home">Home Page</a>
       <a href="/multi-step-register"> Multi Step RegisterPage</a>
+      <a href="/music-player">Music Player </a>
     </main>
   );
 }
