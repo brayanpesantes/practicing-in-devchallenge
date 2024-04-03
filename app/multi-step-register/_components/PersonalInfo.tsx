@@ -23,7 +23,7 @@ export default function PersonalInfo() {
 
   return (
     <Card>
-      <h1 className="text-[#E5E7EB] text-xl">Register</h1>
+      <h1 className="text-[#E5E7EB] text-xl font-bold">Register</h1>
       <form className="mt-10" onSubmit={handleSubmit(onSubmit)}>
         <div className="">
           <Label className="pb-2 text-[#E5E7EB]">Name</Label>

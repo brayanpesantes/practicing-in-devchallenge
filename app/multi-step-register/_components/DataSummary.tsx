@@ -12,8 +12,8 @@ export default function DataSummary() {
 
   return (
     <Card>
-      <h1 className="text-[#E5E7EB] text-xl">Summary</h1>
-      <div className="mt-6">
+      <h1 className="text-[#E5E7EB] text-xl font-bold">Summary</h1>
+      <div className="mt-6 font-medium">
         <p className="text-[#A1A1A9]">
           <span>Name:</span>
           <span className="text-[#E5E7EB] ml-2">
@@ -27,7 +27,7 @@ export default function DataSummary() {
           </span>
         </p>
       </div>
-      <div className="mt-4">
+      <div className="mt-4 font-medium">
         <h2 className="text-[#A1A1A9]">Topics:</h2>
         {
           <ul>

@@ -41,7 +41,7 @@ export default function TopicInterested() {
 
   return (
     <Card>
-      <h1 className="text-[#E5E7EB] text-xl">
+      <h1 className="text-[#E5E7EB] text-xl font-bold">
         Which topics you are interested in?
       </h1>
       <div className="mt-6">
