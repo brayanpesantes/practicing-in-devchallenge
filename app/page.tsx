@@ -8,6 +8,7 @@ export default function Home() {
       <a href="/home">Home Page</a>
       <a href="/multi-step-register"> Multi Step RegisterPage</a>
       <a href="/music-player">Music Player </a>
+      <a href="/random-quote">Random Quote </a>
     </main>
   );
 }

@@ -1,4 +1,11 @@
-import { Be_Vietnam_Pro, Inter, Lato, Poppins, Sora } from "next/font/google";
+import {
+  Be_Vietnam_Pro,
+  Inter,
+  Lato,
+  Poppins,
+  Sora,
+  Outfit,
+} from "next/font/google";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -28,5 +35,10 @@ const inter = Inter({
   weight: ["400", "500", "700"],
   variable: "--font-inter",
 });
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-outfit",
+});
 
-export { beVietnamPro, lato, poppins, sora };
+export { beVietnamPro, lato, poppins, sora, inter, outfit };
