@@ -2,9 +2,9 @@ import {
   Be_Vietnam_Pro,
   Inter,
   Lato,
+  Outfit,
   Poppins,
   Sora,
-  Outfit,
 } from "next/font/google";
 
 const sora = Sora({
@@ -41,4 +41,4 @@ const outfit = Outfit({
   variable: "--font-outfit",
 });
 
-export { beVietnamPro, lato, poppins, sora, inter, outfit };
+export { beVietnamPro, inter, lato, outfit, poppins, sora };
