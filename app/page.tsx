@@ -10,6 +10,7 @@ export default function Home() {
       <a href="/music-player">Music Player </a>
       <a href="/random-quote">Random Quote </a>
       <a href="/qr-generator">Qr Codo Generator </a>
+      <a href="/guess-the-word-game">guess the word game</a>
     </main>
   );
 }
