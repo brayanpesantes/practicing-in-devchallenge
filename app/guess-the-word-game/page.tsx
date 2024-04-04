@@ -112,7 +112,7 @@ export default function GuessTheWordGame() {
           />
         </div>
         <div className="bg-[#4A5567] py-3 rounded-lg my-6 w-full">
-          <p className="font-medium text-[#97A3B6] text-[32px] text-center tracking-[1rem] min-h-12">
+          <p className="font-medium text-[#97A3B6]  text-[26px] md:text-[32px] text-center tracking-[1rem] min-h-12">
             {scrambledWord}
           </p>
         </div>
