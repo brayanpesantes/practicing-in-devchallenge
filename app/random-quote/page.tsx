@@ -45,7 +45,7 @@ export default function RandomQuotePage() {
       .catch((error) => alert(error?.message));
   };
   return (
-    <div className="max-w-screen-xl min-h-screen bg-[#111729] flex flex-col items-center justify-center px-4 md:px-0">
+    <div className="max-w-screen-xl min-h-screen bg-[#111729] flex flex-col items-center justify-center px-4 md:px-0 font-outfit">
       <div className="px-8 pt-8 pb-10 bg-[#20293A] rounded-xl md:w-[546px] bg-quote bg-cover bg-left">
         <h1 className="text-base font-bold text-[#97A3B6] text-center">
           {quote?.author}
