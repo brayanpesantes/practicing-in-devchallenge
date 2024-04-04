@@ -24,6 +24,7 @@ const config: Config = {
         contact: "url('/images/bg-image.svg')",
         "music-player": "url('/images/bg-music-player.webp')",
         quote: "url('/images/bg-image-random-quote.svg')",
+        qr: "url('/images/bg-illustration.svg')",
       },
     },
   },
