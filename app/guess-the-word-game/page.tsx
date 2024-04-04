@@ -30,6 +30,7 @@ export default function GuessTheWordGame() {
 
   useEffect(() => {
     startGame();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const scrambleWord = (word: string) => {
@@ -147,7 +148,13 @@ export default function GuessTheWordGame() {
                 onChange={(e) => handleOnChange(e, index)}
                 autoFocus={index === currentInput}
                 maxLength={1}
-                ref={(el) => (inputsRefs.current[index] = el)}
+                ref={(el) => {
+                  if (el) {
+                    inputsRefs.current[index] = el;
+                  } else {
+                    inputsRefs.current[index] = null;
+                  }
+                }}
                 type="text"
                 className="size-11 bg-transparent rounded-lg border-none ring-2 ring-[#4A5567] font-medium focus:ring-[#672171] focus:ring-2 text-[20px] text-center px-3 "
               />
