@@ -15,6 +15,7 @@ const config: Config = {
         poppins: "var(--font-poppins)",
         beVietnamPro: "var(--font-beVietnamPro)",
         inter: "var(--font-inter)",
+        outfit: "var(--font-outfit)",
       },
       boxShadow: {
         "minimal-card": "0px 30px 100px 0px rgba(17, 23, 41, 0.05)",
@@ -22,6 +23,7 @@ const config: Config = {
       backgroundImage: {
         contact: "url('/images/bg-image.svg')",
         "music-player": "url('/images/bg-music-player.webp')",
+        quote: "url('/images/bg-image-random-quote.svg')",
       },
     },
   },
