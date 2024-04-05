@@ -16,7 +16,6 @@ const config: Config = {
         beVietnamPro: "var(--font-beVietnamPro)",
         inter: "var(--font-inter)",
         outfit: "var(--font-outfit)",
-        dmSans: "var(--font-dmSans)",
       },
       boxShadow: {
         "minimal-card": "0px 30px 100px 0px rgba(17, 23, 41, 0.05)",
@@ -26,7 +25,6 @@ const config: Config = {
         "music-player": "url('/images/bg-music-player.webp')",
         quote: "url('/images/bg-image-random-quote.svg')",
         qr: "url('/images/bg-illustration.svg')",
-        cafe: "url('/images/bg-cafe.webp')",
       },
     },
   },

@@ -11,7 +11,6 @@ export default function Home() {
       <a href="/random-quote">Random Quote </a>
       <a href="/qr-generator">Qr Codo Generator </a>
       <a href="/guess-the-word-game">guess the word game</a>
-      <a href="/simple-coffe">Simple Cafe</a>
     </main>
   );
 }
