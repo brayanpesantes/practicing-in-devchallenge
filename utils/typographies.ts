@@ -5,7 +5,6 @@ import {
   Outfit,
   Poppins,
   Sora,
-  DM_Sans,
 } from "next/font/google";
 
 const sora = Sora({
@@ -41,10 +40,5 @@ const outfit = Outfit({
   weight: ["400", "500", "700"],
   variable: "--font-outfit",
 });
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-dmSans",
-});
 
-export { beVietnamPro, inter, lato, outfit, poppins, sora, dmSans };
+export { beVietnamPro, inter, lato, outfit, poppins, sora };
