@@ -10,11 +10,13 @@ type Props = {
 export default function Card({ coffe }: Props) {
   return (
     <div className="min-w-64">
-      <img
-        src={coffe.image}
-        alt={coffe.name}
-        className="rounded-xl object-cover w-full h-auto"
-      />
+      <div className="overflow-hidden rounded-xl">
+        <img
+          src={coffe.image}
+          alt={coffe.name}
+          className="rounded-xl object-cover w-full h-auto hover:scale-110 transition-all duration-300 ease-in-out"
+        />
+      </div>
       <div className="mt-3">
         <div className="flex justify-between items-center">
           <h3 className="text-sm text-[#FEF7EE]">{coffe.name}</h3>
