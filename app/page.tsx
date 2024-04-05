@@ -12,6 +12,7 @@ export default function Home() {
       <a href="/qr-generator">Qr Codo Generator </a>
       <a href="/guess-the-word-game">guess the word game</a>
       <a href="/simple-coffe">Simple Cafe</a>
+      <a href="/translate-app">Translate App</a>
     </main>
   );
 }
