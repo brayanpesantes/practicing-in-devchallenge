@@ -7,6 +7,7 @@ import {
   beVietnamPro,
   inter,
   outfit,
+  dmSans,
 } from "@/utils/typographies";
 
 export const metadata: Metadata = {
@@ -22,7 +23,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sora.variable} ${lato.variable} ${poppins.variable} ${beVietnamPro.variable} ${inter.variable} ${outfit.variable}`}
+      className={`${sora.variable} ${lato.variable} ${poppins.variable} ${beVietnamPro.variable} ${inter.variable} ${outfit.variable} ${dmSans.variable}`}
     >
       <body className="">{children}</body>
     </html>
