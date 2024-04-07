@@ -9,7 +9,7 @@ export default function ButtonIcon({ className, icon, ...rest }: Props) {
   return (
     <button
       className={cn([
-        "p-2 ring-1 ring-[#4D5562] text-[#4D5562] rounded size-[34px]",
+        "p-2 ring-inset ring-2 ring-[#4D5562] text-[#4D5562] rounded-lg size-[34px]",
         className,
       ])}
       {...rest}

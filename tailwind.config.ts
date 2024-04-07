@@ -27,6 +27,7 @@ const config: Config = {
         quote: "url('/images/bg-image-random-quote.svg')",
         qr: "url('/images/bg-illustration.svg')",
         cafe: "url('/images/bg-cafe.webp')",
+        language: "url('/images/hero_img.webp')",
       },
     },
   },
