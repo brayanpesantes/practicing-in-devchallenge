@@ -1,4 +1,45 @@
-export default function InputSearch() {
+import { useEffect } from "react";
+import { useDebounce } from "use-debounce";
+
+interface InputSearchProps {
+  readonly handleSearchChange: (value: string) => void;
+  readonly searchQuery: string;
+  readonly fetchData: (username: string) => void;
+  readonly handleOpen: () => void;
+}
+export default function InputSearch({
+  handleSearchChange,
+  searchQuery,
+  fetchData,
+  handleOpen,
+}: InputSearchProps) {
+  const [debouncedValue] = useDebounce(searchQuery, 1000);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchDataAfterDebounce = async () => {
+      try {
+        fetchData(debouncedValue);
+        handleOpen();
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    if (debouncedValue && isMounted) {
+      fetchDataAfterDebounce();
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [debouncedValue, fetchData]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleSearchChange(e.target.value);
+  };
+
   return (
     <label className="relative block">
       <span className="sr-only">Search</span>
@@ -20,10 +61,12 @@ export default function InputSearch() {
         </svg>
       </span>
       <input
-        className="placeholder:text-[#364153] block bg-[#20293A] w-full  rounded-md border-none py-4 px-4 ps-[50px] pr-3 shadow-sm focus:outline-none focus:border-[#3662E3] focus:ring-[#3662E3] focus:ring-2 sm:text-sm text-[#CDD5E0]"
+        className="placeholder:text-[#364153] block bg-[#20293A] w-full  rounded-md border-none py-4 px-4 ps-[50px] pr-3 shadow-sm focus:outline-none focus:border-[#3662E3] focus:ring-[#3662E3] focus:ring-2 text-base sm:text-sm text-[#CDD5E0] font-medium"
         placeholder="username"
         type="text"
         name="search"
+        value={searchQuery}
+        onChange={handleChange}
       />
     </label>
   );
