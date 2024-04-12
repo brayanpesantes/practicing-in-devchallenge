@@ -18,7 +18,7 @@ export const Input = ({ className, name, control, rules, ...rest }: Props) => {
     rules,
   });
   return (
-    <div className="">
+    <div className="bg-transparent">
       <input
         className={cn([
           "ps-3 py-6 rounded-xl text-base font-medium text-[#111729] w-full placeholder:text-[#CDD5E0]",
