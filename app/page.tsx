@@ -14,6 +14,7 @@ export default function Home() {
       <a href="/simple-coffe">Simple Cafe</a>
       <a href="/gitHub-profile">githup profile</a>
       <a href="/country">Country</a>
+      <a href="/cuontry-quiz">Country quiz</a>
     </main>
   );
 }
