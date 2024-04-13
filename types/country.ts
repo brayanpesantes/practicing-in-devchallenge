@@ -4,6 +4,7 @@ export interface Country {
   };
   name: {
     common: string;
+    official: string;
   };
   population: number;
   area: number;
@@ -11,6 +12,11 @@ export interface Country {
   subregion: string;
   independent: boolean;
   unMember: boolean;
+  capital: string[];
+  languages: object;
+  currencies: object;
+  continents: string[];
+  borders: string[];
 }
 
 export interface FilterStatus {

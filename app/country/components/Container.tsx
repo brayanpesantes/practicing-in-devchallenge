@@ -5,13 +5,15 @@ import Hero from "./Hero";
 import ListFilters from "./ListFilters";
 
 export default function Container() {
-  const { handleQueryChange } = useCountries();
+  const { handleQueryChange, countries } = useCountries();
   return (
     <div className="bg-[#282B30] max-w-screen-xl min-h-screen font-beVietnamPro">
       <Hero />
-      <div className="mx-10 bg-[#1B1D1F] py-6 px-8 -mt-[60px]">
+      <div className="lg:mx-10 bg-[#1B1D1F] py-6 px-8 -mt-[60px]">
         <div className="flex justify-between items-center">
-          <p className="text-[#6C727F]">Found 234 countries</p>
+          <p className="text-[#6C727F]">
+            Found {countries.length ?? 0} countries
+          </p>
           <label className="relative w-96">
             <span className="sr-only">Search</span>
             <span className="absolute inset-y-0 left-0 flex items-center pl-2 ">
@@ -40,7 +42,7 @@ export default function Container() {
             />
           </label>
         </div>
-        <div className="mt-9 flex gap-8">
+        <div className="mt-9 flex flex-col lg:flex-row gap-8  ">
           <ListFilters />
           <div className="flex-1">
             <CountryTable />

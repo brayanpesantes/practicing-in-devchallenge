@@ -5,8 +5,8 @@ export default function CountryTable() {
   const { countries } = useCountries();
 
   return (
-    <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-      <table className="w-full">
+    <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8 relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table className="w-full table-auto	">
         <thead className="">
           <tr className="text-[#6C727F] text-start text-[12px] font-medium border-b-2 border-[#282B30]">
             <th scope="col" className="pb-4 text-start">

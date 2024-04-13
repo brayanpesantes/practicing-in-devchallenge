@@ -9,7 +9,6 @@ export default function ListFilters() {
     regions,
     handleCheckboxChangeRegions,
   } = useCountries();
-  console.log(regions);
 
   return (
     <aside className="w-[325px] space-y-8">
