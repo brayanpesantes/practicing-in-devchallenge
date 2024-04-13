@@ -28,6 +28,7 @@ const config: Config = {
         qr: "url('/images/bg-illustration.svg')",
         cafe: "url('/images/bg-cafe.webp')",
         github: "url('/images/hero-image-github-profile.webp')",
+        country: "url('/images/hero-image-wr.webp')",
       },
     },
   },
