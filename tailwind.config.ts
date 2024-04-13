@@ -29,6 +29,7 @@ const config: Config = {
         cafe: "url('/images/bg-cafe.webp')",
         github: "url('/images/hero-image-github-profile.webp')",
         country: "url('/images/hero-image-wr.webp')",
+        quiz: "url('/images/bg.jpg')",
       },
     },
   },
