@@ -9,7 +9,7 @@ export default function QuizProgress({
   totalQuestions,
 }: QuizProgressProps) {
   return (
-    <div className="flex flex-row gap-x-3 mt-4">
+    <div className="flex md:flex-row  gap-3 mt-4 flex-wrap">
       {Array.from({ length: totalQuestions }, (_, i) => (
         <div
           key={i}
