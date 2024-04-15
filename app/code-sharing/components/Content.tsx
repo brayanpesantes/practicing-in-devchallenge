@@ -5,14 +5,13 @@ import { DEFAULT_CODE_INITIALIZATION } from "@/utils/codeStateInitial";
 import { createClient } from "@/utils/supebase/client";
 import Editor from "@monaco-editor/react";
 import { usePathname } from "next/navigation";
-import pako from "pako";
 import { useEffect, useState } from "react";
 import NoteCodeLogo from "../../images/NoteCodeLogo.svg";
 import { IconLink } from "./IconLink";
 import { IconShare } from "./IconShare";
 
 export default function Content() {
-  const [language, setLanguage] = useState("html");
+  const [language, setLanguage] = useState<string>("html");
 
   const [mode, setMode] = useState("light");
   const [value, setValue] = useState(DEFAULT_CODE_INITIALIZATION);
@@ -38,7 +37,7 @@ export default function Content() {
   };
 
   const handleSavedCode = async () => {
-    const compressedCode = pako.deflate(JSON.stringify(value));
+    const compressedCode = JSON.stringify(value);
     let rawData;
     if (idCode === "") {
       rawData = { code: compressedCode, theme: mode, language };
@@ -108,9 +107,10 @@ export default function Content() {
               className="form-select py-1 pl-3 h-auto rounded-full  bg-[#CED6E1] border-none"
               onChange={(e) => setLanguage(e.target.value)}
             >
-              <option value="html">Html</option>
-              <option value="javascript">javascript</option>
-              <option value="typescript">typescript</option>
+              <option value={"html"}>Html</option>
+              <option value={"css"}>Css</option>
+              <option value="javascript">Javascript</option>
+              <option value="typescript">Typescript</option>
             </select>
             <select
               name=""
