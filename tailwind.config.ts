@@ -30,6 +30,7 @@ const config: Config = {
         github: "url('/images/hero-image-github-profile.webp')",
         country: "url('/images/hero-image-wr.webp')",
         quiz: "url('/images/bg.jpg')",
+        code: "url('/images/Hero-Background-notecode@2x.webp')",
       },
     },
   },

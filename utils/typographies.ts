@@ -28,7 +28,7 @@ const poppins = Poppins({
 
 const beVietnamPro = Be_Vietnam_Pro({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-beVietnamPro",
 });
 const inter = Inter({
@@ -38,7 +38,7 @@ const inter = Inter({
 });
 const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-outfit",
 });
 const dmSans = DM_Sans({
