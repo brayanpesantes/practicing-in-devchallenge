@@ -3,7 +3,6 @@ import cn from "@/utils/cn";
 import { createClient } from "@/utils/supebase/client";
 import { Editor } from "@monaco-editor/react";
 import { useParams, usePathname } from "next/navigation";
-import pako from "pako";
 import { useEffect, useState } from "react";
 import NoteCodeLogo from "../../images/NoteCodeLogo.svg";
 import { IconLink } from "../components/IconLink";
@@ -34,12 +33,10 @@ export default function ViewCodePage() {
     }
 
     setIdCode(data?.id);
-    setValue(data?.code);
-    const restored = JSON.parse(pako.inflate(data?.code, { to: "string" }));
-    if (data && data.code) {
-      const restored = JSON.parse(pako.inflate(data.code, { to: "string" }));
-      console.log(restored);
-    }
+    const restored = JSON.parse(data.code);
+    setValue(restored);
+    setMode(data.theme);
+    setLanguage(data.language);
   };
   const isEditorEmpty = () => {
     return value.trim() === "";
@@ -61,24 +58,19 @@ export default function ViewCodePage() {
   }, [id]);
 
   const handleSavedCode = async () => {
-    const compressedCode = pako.gzip(value);
-    let rawData;
-    if (idCode === "") {
-      rawData = { code: compressedCode, theme: mode, language };
-    } else {
-      rawData = { code: compressedCode, id: idCode, theme: mode, language };
-    }
-    const { error, data } = await supebase
+    const updateCode = JSON.stringify(value);
+    const { error } = await supebase
       .from("share_code")
-      .upsert(rawData, { onConflict: "id" })
-      .select("id")
-      .single();
+      .update({ code: updateCode, theme: mode, language })
+      .match({ id: idCode });
+
     if (error) {
       alert("error saving code");
+      return;
     }
-    setIdCode(data?.id);
+    setIdCode(idCode);
     setIsButtonEnabled(false);
-    const url = window.location.origin + pathname + "/" + data?.id;
+    const url = window.location.origin + pathname + "/" + idCode;
     shareUrl(url);
   };
 
@@ -131,8 +123,10 @@ export default function ViewCodePage() {
                 id=""
                 className="form-select py-1 pl-3 h-auto rounded-full  bg-[#CED6E1] border-none"
                 onChange={(e) => setLanguage(e.target.value)}
+                value={language}
               >
-                <option value="html">Html</option>
+                <option value="html"> Html</option>
+                <option value="css"> Css</option>
                 <option value="javascript">javascript</option>
                 <option value="typescript">typescript</option>
               </select>
@@ -141,6 +135,7 @@ export default function ViewCodePage() {
                 id=""
                 className="form-select py-1 pl-3 h-auto rounded-full  bg-[#CED6E1] border-none"
                 onChange={(e) => setMode(e.target.value)}
+                value={mode}
               >
                 <option value="light">light</option>
                 <option value="vs-dark">dark</option>
