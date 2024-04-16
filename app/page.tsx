@@ -17,6 +17,7 @@ export default function Home() {
       <a href="/cuontry-quiz">Country quiz</a>
       <a href="/code-sharing">Code-sharing</a>
       <a href="/image-uploader">Image Uploader</a>
+      <a href="/task-board">Task Board</a>
     </main>
   );
 }
