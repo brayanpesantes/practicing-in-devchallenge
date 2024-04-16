@@ -16,6 +16,7 @@ export default function Home() {
       <a href="/country">Country</a>
       <a href="/cuontry-quiz">Country quiz</a>
       <a href="/code-sharing">Code-sharing</a>
+      <a href="/image-uploader">Image Uploader</a>
     </main>
   );
 }
