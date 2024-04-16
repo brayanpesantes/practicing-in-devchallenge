@@ -11,7 +11,7 @@ type NavbarProps = {
 export default function Navbar({ theme, toggleTheme }: NavbarProps) {
   return (
     <header className="py-4 border-b w-full">
-      <div className="px-[72px] flex justify-between items-center">
+      <div className="px-5 md:px-[72px] flex justify-between items-center">
         <div className="">
           <Logo colorText={theme ? "#FFF" : "#121826"} />
         </div>
