@@ -1,11 +1,11 @@
 import {
   Be_Vietnam_Pro,
+  DM_Sans,
   Inter,
   Lato,
   Outfit,
   Poppins,
   Sora,
-  DM_Sans,
 } from "next/font/google";
 
 const sora = Sora({
@@ -33,7 +33,7 @@ const beVietnamPro = Be_Vietnam_Pro({
 });
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["300","400", "500", "700"],
   variable: "--font-inter",
 });
 const outfit = Outfit({
@@ -47,4 +47,5 @@ const dmSans = DM_Sans({
   variable: "--font-dmSans",
 });
 
-export { beVietnamPro, inter, lato, outfit, poppins, sora, dmSans };
+export { beVietnamPro, dmSans, inter, lato, outfit, poppins, sora };
+
