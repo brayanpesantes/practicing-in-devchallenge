@@ -8,6 +8,14 @@ import TaskList from "./TaskList";
 export default function Main() {
   const supabase = createClient();
   const [tasks, setTasks] = useState<Task[] | null>([]);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+
+  const open = () => {
+    setModalIsOpen(true);
+  };
+  const close = () => {
+    setModalIsOpen(false);
+  };
 
   useEffect(() => {
     supabase
@@ -16,12 +24,12 @@ export default function Main() {
       .then((res) => {
         setTasks(res.data);
       });
-  }, []);
+  }, [modalIsOpen]);
 
   return (
     <div className="md:max-w-screen-md mx-auto mt-10">
-      <TaskList tasks={tasks} />
-      <Modal />
+      <TaskList tasks={tasks} open={open} />
+      <Modal modalIsOpen={modalIsOpen} close={close} />
     </div>
   );
 }
