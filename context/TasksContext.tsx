@@ -1,15 +1,16 @@
 "use client";
-import { Status, Task } from "@/types/task";
+import { Task } from "@/types/task";
 import { createClient } from "@/utils/supebase/client";
 import {
   ReactNode,
   createContext,
+  useContext,
   useEffect,
   useState,
-  useContext,
 } from "react";
+import toast from "react-hot-toast";
 
-type InitialTasksContext = {
+interface InitialTasksContext {
   tasks: Task[];
   modalIsOpen: boolean;
   openModal: () => void;
@@ -17,7 +18,9 @@ type InitialTasksContext = {
   createTask: (task: Omit<Task, "id">) => Promise<void>;
   updateTask: (task: Task) => Promise<void>;
   deleteTask: (id: number) => Promise<void>;
-};
+  selectedTask: null | Task;
+  openModalForEdit: (task: Task) => void;
+}
 const initialContext = {
   tasks: [],
   modalIsOpen: false,
@@ -26,15 +29,16 @@ const initialContext = {
   createTask: async () => {},
   updateTask: async () => {},
   deleteTask: async () => {},
+  selectedTask: null,
+  openModalForEdit: () => {},
 };
 
-export const TasksContext = createContext<InitialTasksContext | null>(
-  initialContext
-);
+export const TasksContext = createContext<InitialTasksContext>(initialContext);
 
-export function TaskProvider({ children }: { children: ReactNode }) {
+export function TaskProvider({ children }: { readonly children: ReactNode }) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const supabase = createClient();
 
   useEffect(() => {
@@ -45,13 +49,22 @@ export function TaskProvider({ children }: { children: ReactNode }) {
     setModalIsOpen(true);
   };
 
+  const openModalForEdit = (task: Task) => {
+    setSelectedTask(task);
+    openModal();
+  };
+
   const closeModal = () => {
     setModalIsOpen(false);
+    setSelectedTask(null);
   };
 
   const getTasks = async () => {
     try {
-      const { data, error } = await supabase.from("tasks").select();
+      const { data, error } = await supabase
+        .from("tasks")
+        .select()
+        .order("created_at", { ascending: false });
 
       if (error) throw error;
       setTasks(data);
@@ -73,7 +86,8 @@ export function TaskProvider({ children }: { children: ReactNode }) {
         .select()
         .single();
       if (error) throw error;
-      setTasks((prevTask) => [...prevTask, data]);
+      setTasks((prevTask) => [data, ...prevTask]);
+      toast.success("task add success");
     } catch (error) {
       console.error("Error creating task:", error);
     }
@@ -99,6 +113,9 @@ export function TaskProvider({ children }: { children: ReactNode }) {
             : task
         )
       );
+      toast.success("task update success ", {
+        icon: "🔃",
+      });
     } catch (error) {
       console.error("Error updating task:", error);
     }
@@ -108,7 +125,8 @@ export function TaskProvider({ children }: { children: ReactNode }) {
     try {
       const { error } = await supabase.from("tasks").delete().eq("id", id);
       if (error) throw error;
-      setTasks((prevTasks) => prevTasks.filter((task) => task.id === id));
+      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+      toast.error("delete task success");
     } catch (error) {
       console.error("Error deleting task:", error);
     }
@@ -124,6 +142,8 @@ export function TaskProvider({ children }: { children: ReactNode }) {
         createTask,
         updateTask,
         deleteTask,
+        selectedTask,
+        openModalForEdit,
       }}
     >
       {children}
