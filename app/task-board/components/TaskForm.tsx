@@ -1,87 +1,38 @@
 "use client";
 import { Label } from "@/components/ui/Label";
-import { createClient } from "@/utils/supebase/client";
-import { useState } from "react";
+import { useTaskContext } from "@/context/TasksContext";
+import { Status } from "@/types/task";
+import cn from "@/utils/cn";
+import { useTaskForm } from "../hooks/useForm";
 import IconCloseRing from "./IconCloseRing";
 import IconDone from "./IconDone";
 import IconTimeAtack from "./IconTimeAtack";
 import RadioCustom from "./RadioCustom";
 import RadioStatus from "./RadioStatus";
 
-type TaskFormProps = {
-  readonly close: () => void;
-};
-
-export enum Status {
-  IN_PROGRESS = "IN_PROGRESS",
-  COMPLETED = "COMPLETED",
-  WONT_DO = "WONT_DO",
-  DEFAULT = "DEFAULT",
-}
-export default function TaskForm({ close }: TaskFormProps) {
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [status, setStatus] = useState<string>(Status.DEFAULT);
-  const [iconSelected, setIconSelected] = useState<string>("");
-
-  const supabase = createClient();
-
-  const handleIconChange = (value: string) => {
-    setIconSelected(value);
-  };
-  const handleStateChange = (value: string) => {
-    setStatus(value);
-  };
-
-  const handleOnSave = async () => {
-    console.log("save");
-
-    if (!validateData()) return;
-    const { error } = await supabase.from("tasks").insert({
-      title,
-      description,
-      type: status,
-      icon: iconSelected,
-    });
-
-    if (error) {
-      console.error(error);
-      return;
-    }
-
-    setTitle("");
-    setDescription("");
-    setStatus(Status.DEFAULT);
-    setIconSelected("");
-    close();
-  };
-
-  const validateData = () => {
-    if (title.length === 0) {
-      alert("El titulo es requerido");
-      return false;
-    }
-    if (iconSelected === "") {
-      alert("El icono es requerido");
-      return false;
-    }
-    return true;
-  };
-
+export default function TaskForm() {
+  const {
+    formData,
+    handleIconChange,
+    handleStatusChange,
+    handleChange,
+    handleSaveAndEdit,
+    handleDelete,
+    selectedTask,
+  } = useTaskForm();
+  const { closeModal } = useTaskContext();
+  const { title, description, status, icon } = formData;
   return (
-    <div className="w-1/2  h-full bg-[#F8FAFC] translate-x-full rounded-xl flex flex-col justify-between py-4 px-6">
-      <div className=" ">
+    <div
+      className="w-1/2  h-full bg-[#F8FAFC] translate-x-full rounded-xl flex flex-col justify-between py-4 px-6"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div>
         <div className="flex justify-between items-center">
           <h1 className="text-xl font-medium">Task details</h1>
           <button
             className="p-3 ring-1 self-center rounded-lg ring-[#00000033] "
-            onClick={() => {
-              close();
-              setTitle("");
-              setDescription("");
-              setStatus(Status.DEFAULT);
-              setIconSelected("");
-            }}
+            onClick={closeModal}
           >
             <svg
               width="20"
@@ -114,12 +65,13 @@ export default function TaskForm({ close }: TaskFormProps) {
         </div>
         <div className="w-full mt-4">
           <Label htmlFor="name" className="text-[#97A3B6] font-normal pb-1.5">
-            Name
+            Task Name
           </Label>
           <input
             type="text"
+            name="title"
             className="w-full form-input rounded-md px-[14px] py-[10px]"
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={handleChange}
             value={title}
           />
         </div>
@@ -131,9 +83,11 @@ export default function TaskForm({ close }: TaskFormProps) {
             Description
           </Label>
           <textarea
-            className="w-full form-input rounded-md px-[14px] py-[10px] resize-none h-40"
-            onChange={(e) => setDescription(e.target.value)}
+            name="description"
+            className="w-full form-input rounded-md px-[14px] py-[10px] resize-none h-40 placeholder:text-[#97A3B6]"
+            onChange={handleChange}
             value={description}
+            placeholder="Enter a short description"
           />
         </div>
         <div className="mt-5">
@@ -149,7 +103,7 @@ export default function TaskForm({ close }: TaskFormProps) {
               id="icon1"
               name="icon"
               value="💻"
-              iconSelected={iconSelected}
+              iconSelected={icon}
               onChange={() => handleIconChange("💻")}
             />
             <RadioCustom
@@ -158,7 +112,7 @@ export default function TaskForm({ close }: TaskFormProps) {
               name="icon"
               value="💬"
               onChange={() => handleIconChange("💬")}
-              iconSelected={iconSelected}
+              iconSelected={icon}
             />
             <RadioCustom
               icon="☕"
@@ -166,7 +120,7 @@ export default function TaskForm({ close }: TaskFormProps) {
               name="icon"
               value="☕"
               onChange={() => handleIconChange("☕")}
-              iconSelected={iconSelected}
+              iconSelected={icon}
             />
             <RadioCustom
               icon="🏋️‍♀️"
@@ -174,7 +128,7 @@ export default function TaskForm({ close }: TaskFormProps) {
               name="icon"
               value="🏋️‍♀️"
               onChange={() => handleIconChange("🏋️‍♀️")}
-              iconSelected={iconSelected}
+              iconSelected={icon}
             />
             <RadioCustom
               icon="📚"
@@ -182,7 +136,7 @@ export default function TaskForm({ close }: TaskFormProps) {
               name="icon"
               value="📚"
               onChange={() => handleIconChange("📚")}
-              iconSelected={iconSelected}
+              iconSelected={icon}
             />
             <RadioCustom
               icon="⏰"
@@ -190,9 +144,8 @@ export default function TaskForm({ close }: TaskFormProps) {
               name="icon"
               value="⏰"
               onChange={() => handleIconChange("⏰")}
-              iconSelected={iconSelected}
+              iconSelected={icon}
             />
-            {iconSelected}
           </div>
         </div>
         <div className="mt-5">
@@ -207,39 +160,48 @@ export default function TaskForm({ close }: TaskFormProps) {
               icon={<IconTimeAtack />}
               color="bg-[#E9A23B]"
               text="In Progress"
-              name="state"
-              checked={status === Status.IN_PROGRESS}
-              onChange={handleStateChange}
+              name="status"
               value={Status.IN_PROGRESS}
+              checked={formData.status === Status.IN_PROGRESS}
+              onChange={handleStatusChange}
             />
             <RadioStatus
               icon={<IconDone />}
               color="bg-[#32D657]"
               text="Completed"
-              name="state"
-              checked={status === Status.COMPLETED}
-              onChange={handleStateChange}
+              name="status"
               value={Status.COMPLETED}
+              checked={status === Status.COMPLETED}
+              onChange={handleStatusChange}
             />
             <RadioStatus
               icon={<IconCloseRing />}
               color="bg-[#DD524C]"
-              text="Won’t Do"
-              name="state"
-              checked={status === Status.WONT_DO}
-              onChange={handleStateChange}
+              text="Won't Do"
+              name="status"
               value={Status.WONT_DO}
+              checked={status === Status.WONT_DO}
+              onChange={handleStatusChange}
             />
           </div>
         </div>
       </div>
       <div className="flex justify-end gap-5">
-        <button className="px-6 py-2 bg-[#97A3B6] text-[#F8FAFC] rounded-full">
+        <button
+          className={cn(
+            "px-6 py-2 bg-[#97A3B6] text-[#F8FAFC] rounded-full disabled:cursor-not-allowed ",
+            {
+              "bg-[#DD524C]": selectedTask,
+            }
+          )}
+          disabled={!selectedTask}
+          onClick={handleDelete}
+        >
           Delete
         </button>
         <button
           className="px-6 py-2 bg-[#3662E3] text-[#F8FAFC] rounded-full"
-          onClick={handleOnSave}
+          onClick={handleSaveAndEdit}
         >
           Save
         </button>
