@@ -1,10 +1,9 @@
 import cn from "@/utils/cn";
 import TaskForm from "./TaskForm";
-type ModalProps = {
-  readonly modalIsOpen: boolean;
-  readonly close: () => void;
-};
-export default function Modal({ close, modalIsOpen }: ModalProps) {
+import { useTaskContext } from "@/context/TasksContext";
+
+export default function Modal() {
+  const { modalIsOpen, closeModal } = useTaskContext();
   return (
     <div
       className={cn([
@@ -18,7 +17,7 @@ export default function Modal({ close, modalIsOpen }: ModalProps) {
       ])}
     >
       <div className="w-full h-full relative p-6 ">
-        <TaskForm close={close} />
+        <TaskForm close={closeModal} />
       </div>
     </div>
   );
