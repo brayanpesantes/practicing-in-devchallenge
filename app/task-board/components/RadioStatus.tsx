@@ -1,7 +1,7 @@
 import cn from "@/utils/cn";
-import { ChangeEvent, HtmlHTMLAttributes, ReactNode } from "react";
+import { ChangeEvent, ReactNode } from "react";
 
-interface RadioStatusProps extends HtmlHTMLAttributes<HTMLInputElement> {
+interface RadioStatusProps {
   readonly icon?: ReactNode;
   readonly color?: string;
   readonly text?: string;
@@ -10,56 +10,52 @@ interface RadioStatusProps extends HtmlHTMLAttributes<HTMLInputElement> {
   readonly value?: string;
   readonly onChange: (value: string) => void;
 }
+
 export default function RadioStatus({
   icon,
-  id,
   color,
   name,
   checked,
   value,
   text,
   onChange,
-  ...rest
 }: RadioStatusProps) {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    onChange(event.currentTarget.value);
+    onChange(event.target.value);
   };
 
   return (
     <label
-      htmlFor={id}
       className={cn(
         "p-[2px] flex justify-between items-center ring-1 ring-[#00000033] rounded-lg basis-1/2 cursor-pointer"
       )}
     >
-      <div className="flex items-center gap-3 ">
+      <div className="flex items-center gap-3">
         <div
           className={cn(
-            "p-3  flex items-center justify-center rounded-lg",
+            "p-3 flex items-center justify-center rounded-lg",
             color
           )}
         >
-          <span className="">{icon}</span>
+          <span>{icon}</span>
         </div>
         <input
           type="radio"
           name={name}
           value={value}
-          id={id}
+          checked={checked}
           className="hidden"
           onChange={handleChange}
-          {...rest}
         />
         <p>{text}</p>
       </div>
       {checked && (
-        <div className="mr-4 size-5 rounded-full bg-[#3662E3] flex items-center justify-center text-white">
+        <div className="mr-4 rounded-full bg-[#3662E3] flex items-center justify-center text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="1em"
-            height="1em"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
-            className="size-5"
           >
             <path
               fill="currentColor"
