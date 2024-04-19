@@ -9,6 +9,7 @@ import { Photo } from "@/types/app-unsplash";
 import Link from "next/link";
 import InputSearch from "../components/InputSearch";
 import Navbar from "../components/Navbar";
+import cn from "@/utils/cn";
 
 export default function SearchPage() {
   const searchParams = useSearchParams();
@@ -17,6 +18,7 @@ export default function SearchPage() {
   const initialQuery = searchParams.get("query") ?? "";
   const [query, setQuery] = useState(initialQuery);
   const [data, setData] = useState<Photo[] | null>(null);
+  const [columns, setColumns] = useState(4);
 
   const handleInputChange = (value: string) => {
     setQuery(value);
@@ -49,12 +51,28 @@ export default function SearchPage() {
   };
   useEffect(() => {
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const chunkArray = (
-    array: Photo[] | null = [],
-    columns: number
-  ): Photo[][] => {
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setColumns(1);
+      } else if (width <= 768) {
+        setColumns(2);
+      } else if (width < 1024) {
+        setColumns(3);
+      } else {
+        setColumns(4);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const chunkArray = (array: Photo[] | null, columns: number): Photo[][] => {
     const chunkedArray: Photo[][] = [];
     const columnHeights: number[] = new Array(columns).fill(0); // Inicializamos un array con la altura de cada columna
     array?.forEach((photo) => {
@@ -65,7 +83,7 @@ export default function SearchPage() {
     });
     return chunkedArray;
   };
-  const chunkedImages = chunkArray(data, 4);
+  const chunkedImages = chunkArray(data, columns);
 
   return (
     <div className="max-w-screen-xl min-h-screen mx-auto">
@@ -81,10 +99,29 @@ export default function SearchPage() {
         </div>
       </div>
       <Suspense fallback={<div>cargando...</div>}>
-        <div className="mt-[78px] grid grid-cols-4 gap-x-6  px-[72px]">
+        <div
+          className={cn(
+            "mt-[78px] grid  gap-x-6 px-5  md:px-[72px]",
+            {
+              "grid-cols-4": columns === 4,
+            },
+            {
+              "grid-cols-3": columns === 3,
+            },
+            {
+              "grid-cols-2": columns === 2,
+            },
+            {
+              "grid-cols-1": columns === 1,
+            }
+          )}
+        >
           {chunkedImages?.map((data, index) => {
             return (
-              <div key={`figura-${index}`} className="flex flex-col gap-y-6">
+              <div
+                key={`figura-${data[index]?.id}`}
+                className="flex flex-col gap-y-6"
+              >
                 {data?.map((image) => {
                   return (
                     <Link
