@@ -1,8 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import InputSearch from "./components/InputSearch";
 import Navbar from "./components/Navbar";
-import { useRouter } from "next/navigation";
 
 export default function UnsplashCollectionPage() {
   const [query, setQuery] = useState<string>("");
@@ -14,7 +14,7 @@ export default function UnsplashCollectionPage() {
   };
 
   return (
-    <div className="font-beVietnamPro  bg-[#FFFFFF] max-w-screen-xl mx-auto h-screen">
+    <div className="font-beVietnamPro  max-w-screen-xl mx-auto h-screen">
       <Navbar />
       <div className="bg-collection w-full h-[calc(100%-185px)] bg-center bg-cover bg-no-repeat">
         <div className="my-16">
