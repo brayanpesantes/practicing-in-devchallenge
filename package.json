@@ -21,6 +21,7 @@
     "react-hook-form": "^7.51.2",
     "react-hot-toast": "^2.4.1",
     "tailwind-merge": "^2.2.2",
+    "unsplash-js": "^7.0.19",
     "use-debounce": "^10.0.0"
   },
   "devDependencies": {
