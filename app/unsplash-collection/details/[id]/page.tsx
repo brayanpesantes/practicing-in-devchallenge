@@ -6,13 +6,13 @@ import LocalizedFormat from "dayjs/plugin/localizedFormat";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
+import { Photo } from "@/types/app-unsplash";
 dayjs.extend(LocalizedFormat);
 export default function DetailsIdPage() {
   const params = useParams();
 
-  const [collections, setCollections] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-  const [photo, setPhoto] = useState(null);
+  const [photo, setPhoto] = useState<Photo | null>(null);
 
   const getPhoto = async () => {
     setLoading(true);
@@ -22,17 +22,6 @@ export default function DetailsIdPage() {
         if (result.type === "success") {
           const res = result.response;
           setPhoto(res as any);
-          api.users
-            .getCollections({
-              username: res.user.username,
-              page: 2,
-              perPage: 15,
-            })
-            .then((result) => {
-              if (result.type === "success") {
-                setCollections(result.response.results as any);
-              }
-            });
           setLoading(false);
         }
       });
@@ -40,7 +29,6 @@ export default function DetailsIdPage() {
 
   const photoDownload = () => {
     if (!photo) return;
-    console.log(photo);
 
     const link = document.createElement("a");
     link.href = photo.links.download;
@@ -48,11 +36,10 @@ export default function DetailsIdPage() {
     link.target = "_blank";
     link.click();
   };
-  const perPage = 30; // Número de colecciones por página
-  let currentPage = 1;
 
   useEffect(() => {
     getPhoto();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
   return (
     <div className="max-w-screen-xl min-h-screen mx-auto font-beVietnamPro">
@@ -61,9 +48,9 @@ export default function DetailsIdPage() {
         {loading ? (
           "cargando"
         ) : (
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 w-full px-4 sm:w-[552px] mx-auto xl:w-full xl:grid-cols-2 gap-6">
             <div className="">
-              <img src={photo?.urls?.regular} alt="" />
+              <img src={photo?.urls?.regular} alt="" className="rounded-md" />
             </div>
             <div className="">
               <div className="flex gap-3">
@@ -78,11 +65,11 @@ export default function DetailsIdPage() {
                 Published on {dayjs(photo?.created_at).format("LL")}
               </p>
               <div className="space-x-3 mt-5">
-                <button className="transition-all duration-150 cursor-pointer ease-in-out py-3 px-6 bg-[#E5E7EB] text-[#121826] text-sm font-medium rounded-md hover:text-white hover:bg-blue-500">
+                <button className="transition-all duration-150 cursor-pointer ease-in-out py-2 px-3 sm:py-3 sm:px-6 bg-[#E5E7EB] text-[#121826] text-sm font-medium rounded-md hover:text-white hover:bg-blue-500">
                   Add to Collection
                 </button>
                 <button
-                  className="transition-all duration-150 cursor-pointer ease-in-out py-3 px-6 bg-[#E5E7EB] text-[#121826] text-sm font-medium rounded-md hover:text-white hover:bg-blue-500"
+                  className="transition-all duration-150 cursor-pointer ease-in-out py-2 px-3 sm:py-3 sm:px-6 bg-[#E5E7EB] text-[#121826] text-sm font-medium rounded-md hover:text-white hover:bg-blue-500"
                   onClick={photoDownload}
                 >
                   Download
@@ -91,10 +78,10 @@ export default function DetailsIdPage() {
               <div className="mt-9">
                 <h3>Collections</h3>
                 <div className="mt-2 space-y-3">
-                  {collections?.map((collection) => (
+                  {photo?.related_collections?.results?.map((collection) => (
                     <div
                       className="flex justify-between p-2 hover:bg-[#E5E7EBCC] rounded group/item transition-all duration-150 cursor-pointer ease-in-out "
-                      key={collection.id}
+                      key={collection?.id}
                     >
                       <div className="flex gap-4">
                         <img
