@@ -18,6 +18,7 @@ export default function Home() {
       <a href="/code-sharing">Code-sharing</a>
       <a href="/image-uploader">Image Uploader</a>
       <a href="/task-board">Task Board</a>
+      <a href="/unsplash-collection">Unsplash Collection</a>
     </main>
   );
 }
