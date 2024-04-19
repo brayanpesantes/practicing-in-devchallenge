@@ -86,8 +86,7 @@ export default function SearchPage() {
   const chunkedImages = chunkArray(data, columns);
 
   return (
-    <div className="max-w-screen-xl min-h-screen mx-auto">
-      <Navbar />
+    <>
       <div className="bg-collection-gradient h-20 relative">
         <div className="top-12 absolute inset-0">
           <InputSearch
@@ -143,6 +142,6 @@ export default function SearchPage() {
           })}
         </div>
       </Suspense>
-    </div>
+    </>
   );
 }

@@ -4,9 +4,9 @@ import LogoImage from "../../images/logo-unsplash-collection.svg";
 export default function Navbar() {
   return (
     <header className="py-4 px-8 flex justify-between font-medium border-b border-[#E5E7EB] ">
-      <div className="">
+      <Link href={"/unsplash-collection"} className="">
         <img src={LogoImage.src} alt="logo application" />
-      </div>
+      </Link>
       <nav className="space-x-2">
         <Link
           className="py-2 px-5 text-[#6C727F]"
@@ -14,7 +14,7 @@ export default function Navbar() {
         >
           Home
         </Link>
-        <Link className="py-2 px-5" href={"/unsplash-collection"}>
+        <Link className="py-2 px-5" href={"/unsplash-collection/collections"}>
           Collection
         </Link>
       </nav>
