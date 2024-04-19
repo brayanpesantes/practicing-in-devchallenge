@@ -1,5 +1,4 @@
 import cn from "@/utils/cn";
-import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 type Props = {
   readonly className?: string;
@@ -14,11 +13,9 @@ export default function InputSearch({
   handleSubmit = () => {},
 }: Props) {
   const [value, setValue] = useState(defaultValue);
-  const route = useRouter();
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    route.replace(`/unsplash-collection/search?query=${value}`);
     handleSubmit();
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
