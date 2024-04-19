@@ -31,6 +31,8 @@ const config: Config = {
         country: "url('/images/hero-image-wr.webp')",
         quiz: "url('/images/bg.jpg')",
         code: "url('/images/Hero-Background-notecode@2x.webp')",
+        collection: "url('/images/hero-image.avif')",
+        "collection-gradient": "url('/images/gradiend-bg-unsplash.avif')",
       },
     },
   },
