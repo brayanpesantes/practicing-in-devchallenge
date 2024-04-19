@@ -12,6 +12,9 @@ export default function UnsplashCollectionPage() {
     setQuery(value);
     route.push(`/unsplash-collection?query=${query}`);
   };
+  const handleSubmit = () => {
+    route.replace(`/unsplash-collection/search?query=${query}`);
+  };
 
   return (
     <div className="font-beVietnamPro  max-w-screen-xl mx-auto h-screen">
@@ -23,7 +26,11 @@ export default function UnsplashCollectionPage() {
             <p className="mt-2 text-sm font-light text-[#121826]">
               Search high-resolution images from Unsplash
             </p>
-            <InputSearch className="mt-6" onSearch={handleSearch} />
+            <InputSearch
+              className="mt-6"
+              onSearch={handleSearch}
+              handleSubmit={handleSubmit}
+            />
           </div>
         </div>
       </div>
