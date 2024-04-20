@@ -65,3 +65,14 @@ export interface Urls {
   thumb: string;
   small_s3: string;
 }
+
+export interface Collection {
+  id: string;
+  title: string;
+  total_photos: number;
+  preview_photos: PreviewPhoto[];
+}
+export interface PreviewPhoto {
+  id: string;
+  urls: Urls;
+}
