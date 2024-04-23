@@ -1,24 +1,47 @@
+"use client";
+import Card from "@/components/ui/Card";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+interface Project {
+  id: string;
+  name: string;
+  slug: string;
+  image_url: string;
+  github_url: string;
+  preview_url: string;
+  difficulty: string;
+}
+
 export default function Home() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const getData = async () => {
+    const res = await fetch("./data.json");
+    const data = await res.json();
+    setProjects(data.projects);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <a href="/minimal-blog-card">mini blog card</a>
-      <a href="/business-blog-card">business blog card</a>
-      <a href="/testimonial">Testimonial</a>
-      <a href="/contact">Contact</a>
-      <a href="/home">Home Page</a>
-      <a href="/multi-step-register"> Multi Step RegisterPage</a>
-      <a href="/music-player">Music Player </a>
-      <a href="/random-quote">Random Quote </a>
-      <a href="/qr-generator">Qr Codo Generator </a>
-      <a href="/guess-the-word-game">guess the word game</a>
-      <a href="/simple-coffe">Simple Cafe</a>
-      <a href="/gitHub-profile">githup profile</a>
-      <a href="/country">Country</a>
-      <a href="/cuontry-quiz">Country quiz</a>
-      <a href="/code-sharing">Code-sharing</a>
-      <a href="/image-uploader">Image Uploader</a>
-      <a href="/task-board">Task Board</a>
-      <a href="/unsplash-collection">Unsplash Collection</a>
+    <main className="mt-10">
+      <h1 className="text-5xl text-center">
+        PROJECTS DE
+        <Link href="https://devchallenges.io/" target="_blank">
+          <strong> devchallenges</strong>
+        </Link>
+      </h1>
+      <div className="grid grid-cols-4 max-w-screen-2xl mx-auto py-10 gap-10">
+        {projects.map((project) => (
+          <Card
+            key={project.id}
+            image={project.image_url}
+            title={project.name}
+          />
+        ))}
+      </div>
     </main>
   );
 }

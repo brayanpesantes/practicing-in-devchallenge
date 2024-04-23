@@ -1,0 +1,49 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "Minimal Blog Card",
+      "slug": "/minimal-blog-card",
+      "image_url": "./images/examples/minimal_blog_card.avif",
+      "github_url": "",
+      "preview_url": "",
+      "difficulty": "junior"
+    },
+    {
+      "id": 2,
+      "name": "Business Blog Card",
+      "slug": "/business-blog-card",
+      "image_url": "./images/examples/business-blog-bard.avif",
+      "github_url": "",
+      "preview_url": "",
+      "difficulty": "junior"
+    },
+    {
+      "id": 3,
+      "name": "Testimonial Page",
+      "slug": "/testimonial",
+      "image_url": "./images/examples/testimonial-page.avif",
+      "github_url": "",
+      "preview_url": "",
+      "difficulty": "junior"
+    },
+    {
+      "id": 4,
+      "name": "Contact Page",
+      "slug": "/contact",
+      "image_url": "./images/examples/contact-page.avif",
+      "github_url": "",
+      "preview_url": "",
+      "difficulty": "junior"
+    },
+    {
+      "id": 5,
+      "name": "Simple HomePage",
+      "slug": "/home",
+      "image_url": "./images/examples/simple-homepage.avif",
+      "github_url": "",
+      "preview_url": "",
+      "difficulty": "junior"
+    }
+  ]
+}
