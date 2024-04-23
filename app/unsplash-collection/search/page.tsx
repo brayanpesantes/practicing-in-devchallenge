@@ -3,14 +3,13 @@
 "use client";
 import { api } from "@/utils/unsplasn";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import useColumnsMasonry from "@/hooks/useColumnsMasonry";
-import { Photo as PhotoType } from "@/types/app-unsplash";
+import { Photo } from "@/types/app-unsplash";
 import cn from "@/utils/cn";
 import Link from "next/link";
 import InputSearch from "../components/InputSearch";
-import Photo from "../components/Photo";
 
 export default function SearchPage() {
   const searchParams = useSearchParams();
@@ -18,7 +17,7 @@ export default function SearchPage() {
   const pathname = usePathname();
   const initialQuery = searchParams.get("query") ?? "";
   const [query, setQuery] = useState(initialQuery);
-  const [data, setData] = useState<PhotoType[] | null>(null);
+  const [data, setData] = useState<Photo[] | null>(null);
 
   const handleInputChange = (value: string) => {
     setQuery(value);
@@ -71,44 +70,51 @@ export default function SearchPage() {
           />
         </div>
       </div>
-      <div
-        className={cn(
-          "mt-[78px] grid  gap-x-6 px-5  md:px-[72px]",
-          {
-            "grid-cols-4": columns === 4,
-          },
-          {
-            "grid-cols-3": columns === 3,
-          },
-          {
-            "grid-cols-2": columns === 2,
-          },
-          {
-            "grid-cols-1": columns === 1,
-          }
-        )}
-      >
-        {chunkedImages?.map((data, index) => {
-          return (
-            <div
-              key={`figura-${data[index]?.id}`}
-              className="flex flex-col gap-y-6"
-            >
-              {data?.map((image) => {
-                return (
-                  <Link
-                    href={`/unsplash-collection/details/${image.id}`}
-                    key={`image-${image.id}`}
-                    className="block"
-                  >
-                    <Photo photo={image} key={image.id} />
-                  </Link>
-                );
-              })}
-            </div>
-          );
-        })}
-      </div>
+      <Suspense fallback={<div>cargando...</div>}>
+        <div
+          className={cn(
+            "mt-[78px] grid  gap-x-6 px-5  md:px-[72px]",
+            {
+              "grid-cols-4": columns === 4,
+            },
+            {
+              "grid-cols-3": columns === 3,
+            },
+            {
+              "grid-cols-2": columns === 2,
+            },
+            {
+              "grid-cols-1": columns === 1,
+            }
+          )}
+        >
+          {chunkedImages?.map((data, index) => {
+            return (
+              <div
+                key={`figura-${data[index]?.id}`}
+                className="flex flex-col gap-y-6"
+              >
+                {data?.map((image) => {
+                  return (
+                    <Link
+                      href={`/unsplash-collection/details/${image.id}`}
+                      key={`image-${image.id}`}
+                    >
+                      <figure>
+                        <img
+                          src={image.urls.regular}
+                          alt={image.description}
+                          className="w-full"
+                        />
+                      </figure>
+                    </Link>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+      </Suspense>
     </>
   );
 }
