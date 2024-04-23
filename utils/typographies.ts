@@ -28,17 +28,17 @@ const poppins = Poppins({
 
 const beVietnamPro = Be_Vietnam_Pro({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-beVietnamPro",
 });
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["300","400", "500", "700"],
+  weight: ["300", "400", "500", "700"],
   variable: "--font-inter",
 });
 const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["300","400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-outfit",
 });
 const dmSans = DM_Sans({
@@ -48,4 +48,3 @@ const dmSans = DM_Sans({
 });
 
 export { beVietnamPro, dmSans, inter, lato, outfit, poppins, sora };
-
