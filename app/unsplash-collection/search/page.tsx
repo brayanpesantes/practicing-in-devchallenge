@@ -3,7 +3,7 @@
 "use client";
 import { api } from "@/utils/unsplasn";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import useColumnsMasonry from "@/hooks/useColumnsMasonry";
 import { Photo as PhotoType } from "@/types/app-unsplash";
@@ -71,46 +71,44 @@ export default function SearchPage() {
           />
         </div>
       </div>
-      <Suspense fallback={<div>cargando...</div>}>
-        <div
-          className={cn(
-            "mt-[78px] grid  gap-x-6 px-5  md:px-[72px]",
-            {
-              "grid-cols-4": columns === 4,
-            },
-            {
-              "grid-cols-3": columns === 3,
-            },
-            {
-              "grid-cols-2": columns === 2,
-            },
-            {
-              "grid-cols-1": columns === 1,
-            }
-          )}
-        >
-          {chunkedImages?.map((data, index) => {
-            return (
-              <div
-                key={`figura-${data[index]?.id}`}
-                className="flex flex-col gap-y-6"
-              >
-                {data?.map((image) => {
-                  return (
-                    <Link
-                      href={`/unsplash-collection/details/${image.id}`}
-                      key={`image-${image.id}`}
-                      className="block"
-                    >
-                      <Photo photo={image} key={image.id} />
-                    </Link>
-                  );
-                })}
-              </div>
-            );
-          })}
-        </div>
-      </Suspense>
+      <div
+        className={cn(
+          "mt-[78px] grid  gap-x-6 px-5  md:px-[72px]",
+          {
+            "grid-cols-4": columns === 4,
+          },
+          {
+            "grid-cols-3": columns === 3,
+          },
+          {
+            "grid-cols-2": columns === 2,
+          },
+          {
+            "grid-cols-1": columns === 1,
+          }
+        )}
+      >
+        {chunkedImages?.map((data, index) => {
+          return (
+            <div
+              key={`figura-${data[index]?.id}`}
+              className="flex flex-col gap-y-6"
+            >
+              {data?.map((image) => {
+                return (
+                  <Link
+                    href={`/unsplash-collection/details/${image.id}`}
+                    key={`image-${image.id}`}
+                    className="block"
+                  >
+                    <Photo photo={image} key={image.id} />
+                  </Link>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }
