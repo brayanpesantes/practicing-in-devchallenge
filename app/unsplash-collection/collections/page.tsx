@@ -1,4 +1,3 @@
-import React, { Suspense } from "react";
 import CollectionList from "../components/CollectionList";
 
 export default function CollectionsPage() {
@@ -12,7 +11,7 @@ export default function CollectionsPage() {
         </h1>
         <p className="mt-2">
           Explore the world through collections of beautiful <br /> photos free
-          to use under the{" "}
+          to use under the
           <strong className="underline">Unsplash License.</strong>
         </p>
       </div>
