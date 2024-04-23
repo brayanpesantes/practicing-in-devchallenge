@@ -6,11 +6,10 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
 import useColumnsMasonry from "@/hooks/useColumnsMasonry";
-import { Photo as PhotoType } from "@/types/app-unsplash";
+import { Photo } from "@/types/app-unsplash";
 import cn from "@/utils/cn";
 import Link from "next/link";
 import InputSearch from "../components/InputSearch";
-import Photo from "../components/Photo";
 
 export default function SearchPage() {
   const searchParams = useSearchParams();
@@ -18,7 +17,7 @@ export default function SearchPage() {
   const pathname = usePathname();
   const initialQuery = searchParams.get("query") ?? "";
   const [query, setQuery] = useState(initialQuery);
-  const [data, setData] = useState<PhotoType[] | null>(null);
+  const [data, setData] = useState<Photo[] | null>(null);
 
   const handleInputChange = (value: string) => {
     setQuery(value);
@@ -100,9 +99,14 @@ export default function SearchPage() {
                     <Link
                       href={`/unsplash-collection/details/${image.id}`}
                       key={`image-${image.id}`}
-                      className="block"
                     >
-                      <Photo photo={image} key={image.id} />
+                      <figure>
+                        <img
+                          src={image.urls.regular}
+                          alt={image.description}
+                          className="w-full"
+                        />
+                      </figure>
                     </Link>
                   );
                 })}
