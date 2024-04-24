@@ -5,8 +5,7 @@
       "name": "Minimal Blog Card",
       "slug": "/minimal-blog-card",
       "image_url": "./images/examples/minimal_blog_card.avif",
-      "github_url": "",
-      "preview_url": "",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/minimal-blog-card",
       "difficulty": "junior"
     },
     {
@@ -14,8 +13,7 @@
       "name": "Business Blog Card",
       "slug": "/business-blog-card",
       "image_url": "./images/examples/business-blog-bard.avif",
-      "github_url": "",
-      "preview_url": "",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/bussines-blog-card",
       "difficulty": "junior"
     },
     {
@@ -23,8 +21,7 @@
       "name": "Testimonial Page",
       "slug": "/testimonial",
       "image_url": "./images/examples/testimonial-page.avif",
-      "github_url": "",
-      "preview_url": "",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/testimonials",
       "difficulty": "junior"
     },
     {
@@ -32,8 +29,7 @@
       "name": "Contact Page",
       "slug": "/contact",
       "image_url": "./images/examples/contact-page.avif",
-      "github_url": "",
-      "preview_url": "",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/contact",
       "difficulty": "junior"
     },
     {
@@ -41,9 +37,111 @@
       "name": "Simple HomePage",
       "slug": "/home",
       "image_url": "./images/examples/simple-homepage.avif",
-      "github_url": "",
-      "preview_url": "",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/home-page",
       "difficulty": "junior"
+    },
+    {
+      "id": 6,
+      "name": "Multi-step Register Form",
+      "slug": "/multi-step-register",
+      "image_url": "./images/examples/multi-step-register.avif",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/multi-step-register",
+      "difficulty": "junior"
+    },
+    {
+      "id": 7,
+      "name": "Music Player",
+      "slug": "/music-player",
+      "image_url": "./images/examples/music-player.avif",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/music-player",
+      "difficulty": "junior"
+    },
+    {
+      "id": 8,
+      "name": "Random Quote",
+      "slug": "/random-quote",
+      "image_url": "./images/examples/minimal-homepage.avif",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/random-quote",
+      "difficulty": "junior"
+    },
+    {
+      "id": 9,
+      "name": "QR code generator",
+      "slug": "/qr-generator",
+      "image_url": "./images/examples/minimal-homepage.avif",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/generator-codeqr",
+      "difficulty": "junior"
+    },
+    {
+      "id": 10,
+      "name": "Guest the word Game",
+      "slug": "/guess-the-word-game",
+      "image_url": "./images/examples/minimal-homepage.avif",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/guess-the-word-game",
+      "difficulty": "Intermedie"
+    },
+    {
+      "id": 11,
+      "name": "Simple Coffee Listing",
+      "slug": "/simple-coffe",
+      "image_url": "./images/examples/minimal-homepage.avif",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/simple-coffe",
+      "difficulty": "Intermedie"
+    },
+    {
+      "id": 12,
+      "name": "GitHub Profile",
+      "slug": "/gitHub-profile",
+      "image_url": "./images/examples/minimal-homepage.avif",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/GitHub-Profile"
+    },
+    {
+      "id": 13,
+      "name": "Country Page - WorldRanks",
+      "slug": "/country",
+      "image_url": "./images/examples/minimal-homepage.avif",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/country-page",
+      "difficulty": "Intermedie"
+    },
+    {
+      "id": 14,
+      "name": "Country Quiz",
+      "slug": "/cuontry-quiz",
+      "image_url": "./images/examples/minimal-homepage.avif",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/country-quiz",
+      "difficulty": "Intermedie"
+    },
+    {
+      "id": 15,
+      "name": "Code Sharing App",
+      "slug": "/code-sharing",
+      "image_url": "./images/examples/minimal-homepage.avif",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/code-sharing",
+      "difficulty": "Advanced"
+    },
+    {
+      "id": 16,
+      "name": "Simple Image Uploader",
+      "slug": "/image-uploader",
+      "image_url": "./images/examples/minimal-homepage.avif",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/image-uploader",
+      "difficulty": "Advanced"
+    },
+    {
+      "id": 17,
+      "name": "My Task Board",
+      "slug": "/task-board",
+      "image_url": "./images/examples/minimal-homepage.avif",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/task-board",
+      "difficulty": "Advanced"
+    },
+    {
+      "id": 18,
+      "name": "Unsplash Collection",
+      "slug": "/unsplash-collection",
+      "image_url": "./images/examples/minimal-homepage.avif",
+      "github_url": "https://github.com/brayanpesantes/practicing-in-devchallenge/tree/unsplash-collection",
+      "difficulty": "Advanced"
     }
   ]
 }
