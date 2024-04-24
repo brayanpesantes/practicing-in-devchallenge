@@ -1,11 +1,25 @@
+import Link from "next/link";
+
 type Props = {
   readonly title: string;
   readonly image: string;
+  readonly github_url: string;
+  readonly slug: string;
 };
-export default function Card({ image, title }: Props) {
+export default function Card({
+  image,
+  title,
+  github_url,
+
+  slug,
+}: Props) {
+  const preview = window.location.origin + "/" + slug;
   return (
     <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-full">
-      <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white  bg-clip-border rounded-xl h-52">
+      <Link
+        href={slug}
+        className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white  bg-clip-border rounded-xl h-52"
+      >
         <picture>
           <img
             src={image}
@@ -13,16 +27,17 @@ export default function Card({ image, title }: Props) {
             className="bg-cover bg-center drop-shadow-sm"
           />
         </picture>
-      </div>
+      </Link>
       <div className="p-6 text-center">
         <h4 className="block mb-2 text-start font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-gray-800">
           {title}
         </h4>
       </div>
-      <div className="flex justify-between p-6 pt-2 gap-7 px-20">
+      <div className="flex justify-center p-6 pt-2 gap-10 ">
         <a
-          href="#facebook"
-          className="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-clip-text bg-gradient-to-tr from-blue-600 to-blue-400 cursor-pointer"
+          href={github_url}
+          target="_blank"
+          className="block font-sans text-xl antialiased font-normal leading-relaxed  hover:bg-gray-100 p-2 rounded-md cursor-pointer"
         >
           <span className="text-black">
             <svg
@@ -40,25 +55,28 @@ export default function Card({ image, title }: Props) {
         </a>
 
         <a
-          href="#instagram"
-          className="block font-sans text-xl antialiased font-normal leading-relaxed text-transparent bg-clip-text bg-gradient-to-tr from-purple-600 to-purple-400 text-black"
+          href={preview}
+          target="_blank"
+          className="block font-sans text-xl antialiased font-normal leading-relaxed  hover:bg-gray-100 p-2 rounded-md cursor-pointer"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1em"
-            height="1em"
-            viewBox="0 0 48 48"
-          >
-            <g
-              fill="none"
-              stroke="currentColor"
-              strokeLinejoin="round"
-              strokeWidth="4"
+          <span className="text-gray-900">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 48 48"
             >
-              <path d="M24 36c11.046 0 20-12 20-12s-8.954-12-20-12S4 24 4 24s8.954 12 20 12Z"></path>
-              <path d="M24 29a5 5 0 1 0 0-10a5 5 0 0 0 0 10Z"></path>
-            </g>
-          </svg>
+              <g
+                fill="none"
+                stroke="currentColor"
+                strokeLinejoin="round"
+                strokeWidth="4"
+              >
+                <path d="M24 36c11.046 0 20-12 20-12s-8.954-12-20-12S4 24 4 24s8.954 12 20 12Z"></path>
+                <path d="M24 29a5 5 0 1 0 0-10a5 5 0 0 0 0 10Z"></path>
+              </g>
+            </svg>
+          </span>
         </a>
       </div>
     </div>
