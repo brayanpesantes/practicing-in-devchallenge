@@ -33,7 +33,27 @@ export default function Home() {
           <strong> devchallenges</strong>
         </Link>
       </h1>
-      <div className="grid grid-cols-1 md:lg:grid-cols-2 lg:grid-cols-3  py-10 gap-10">
+      <p className="py-10 text-sm px-10">
+        ¡Entiendo! Aquí tienes una versión revisada: &quot;¡Estoy encantado de
+        compartir que estoy trabajando en una serie de desafíos de desarrollo
+        web de
+        <Link href="https://devchallenges.io/" target="_blank">
+          <strong> devchallenges.io </strong>
+        </Link>
+        y mostrando mis proyectos en mi página web! Desde proyectos de diseño
+        web responsivo hasta desafíos de JavaScript, frontend y full stack,
+        estos ejercicios están ampliando mis habilidades técnicas y prácticas en
+        el mundo del desarrollo web. Cada proyecto que completo no solo
+        fortalece mi conocimiento, sino que también mejora mi cartera
+        profesional. Agradezco enormemente a
+        <Link href="https://devchallenges.io/" target="_blank">
+          <strong> devchallenges.io </strong>
+        </Link>
+        por proporcionar esta plataforma emocionante que impulsa mi crecimiento
+        como desarrollador. ¡Visita mi página web para ver mis proyectos y únete
+        a mí en esta emocionante jornada de desarrollo web!&quot;
+      </p>
+      <div className="grid grid-cols-1 md:lg:grid-cols-2 lg:grid-cols-3  py-10 gap-10 px-10">
         {projects.map((project) => (
           <Card
             key={project.id}
