@@ -24,7 +24,7 @@ export default function Card({
           <img
             src={image}
             alt={title}
-            className="bg-cover bg-center drop-shadow-sm"
+            className="bg-cover bg-center drop-shadow-sm transition-all duration-500 scale-125 hover:scale-150"
           />
         </picture>
       </Link>
