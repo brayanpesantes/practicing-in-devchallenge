@@ -23,9 +23,13 @@ export default function GuessTheWordGame() {
   const inputsRefs = useRef<(HTMLInputElement | null)[]>([]);
   const [currentWord, setCurrentWord] = useState<string>("");
   const [currentInput, setCurrentInput] = useState<number>(0);
-  const [tries, setTries] = useState<number>(0);
   const [scrambledWord, setScrambledWord] = useState<string>("");
   const [inputs, setInputs] = useState<string[]>([]);
+  const [currentPlayer, setCurrentPlayer] = useState<number>(1);
+  const [player1Score, setPlayer1Score] = useState<number>(0);
+  const [player2Score, setPlayer2Score] = useState<number>(0);
+  const [player1Tries, setPlayer1Tries] = useState<number>(0);
+  const [player2Tries, setPlayer2Tries] = useState<number>(0);
   const [mistakes, setMistakes] = useState<string[]>([]);
 
   useEffect(() => {
@@ -55,19 +59,34 @@ export default function GuessTheWordGame() {
         const nextIndex = index + 1;
         setCurrentInput(nextIndex);
         if (nextIndex === currentWord.length) {
-          alert("🎉 success");
+          // Word guessed correctly
+          if (currentPlayer === 1) {
+            setPlayer1Score(player1Score + 10);
+          } else {
+            setPlayer2Score(player2Score + 10);
+          }
+          alert(`Player ${currentPlayer}, you guessed the word!`);
+          setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
           startGame();
         } else {
           inputsRefs.current[nextIndex]?.focus();
         }
       } else {
         e.target.classList.add("text-red-500");
-        setTries(tries + 1);
+        // Update tries for the current player
+        if (currentPlayer === 1) {
+          setPlayer1Tries(player1Tries + 1);
+        } else {
+          setPlayer2Tries(player2Tries + 1);
+        }
         setMistakes([...mistakes, letter]);
 
-        if (tries === 5) {
-          alert("Please Rest");
-          resetGame();
+        // Check tries based on current player
+        const currentTries = currentPlayer === 1 ? player1Tries : player2Tries;
+        if (currentTries >= 5) { // Check if tries have reached max (5)
+          alert(`Player ${currentPlayer}, you've run out of tries!`);
+          setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
+          startGame();
         }
       }
     } else {
@@ -81,6 +100,15 @@ export default function GuessTheWordGame() {
         inputRef.value = "";
       }
     });
+    setCurrentInput(0); // Reset current input focus
+    setMistakes([]); // Reset mistakes for the new turn/word
+
+    // Reset tries for the current player
+    if (currentPlayer === 1) {
+      setPlayer1Tries(0);
+    } else {
+      setPlayer2Tries(0);
+    }
 
     const randomIndex = Math.floor(Math.random() * words.length);
     const randomWord = words[randomIndex].toLowerCase();
@@ -94,9 +122,15 @@ export default function GuessTheWordGame() {
     setCurrentInput(0);
     setCurrentWord("");
     setScrambledWord("");
-    setTries(0);
+    setPlayer1Tries(0);
+    setPlayer2Tries(0);
+    setPlayer1Score(0);
+    setPlayer2Score(0);
     setMistakes([]);
-    startGame();
+    setCurrentPlayer(1); // Set current player to 1 before starting
+    // startGame will be called, and it will use currentPlayer = 1
+    // and reset player 1's tries.
+    startGame(); 
   };
 
   return (
@@ -111,6 +145,14 @@ export default function GuessTheWordGame() {
             priority
           />
         </div>
+        {/* Player Turn and Scores Display */}
+        <div className="text-center my-4 text-[#F2F5F9]">
+          <p className="text-xl font-semibold">Player {currentPlayer}'s Turn</p>
+          <div className="flex justify-around mt-2 text-lg">
+            <p>Player 1 Score: {player1Score}</p>
+            <p>Player 2 Score: {player2Score}</p>
+          </div>
+        </div>
         <div className="bg-[#4A5567] py-3 rounded-lg my-6 w-full">
           <p className="font-medium text-[#97A3B6]  text-[26px] md:text-[32px] text-center tracking-[1rem] min-h-12">
             {scrambledWord}
@@ -118,15 +160,21 @@ export default function GuessTheWordGame() {
         </div>
         <div className="text-[#F2F5F9] text-xs">
           <div className="flex justify-between">
+            {/* Display tries based on current player - Already updated in previous step, verifying placement and clarity */}
             <div className="flex gap-3 items-center">
-              <p> tries({tries}/5):</p>
+              <p>
+                P{currentPlayer} Tries (
+                {currentPlayer === 1 ? player1Tries : player2Tries}/5):
+              </p>
               <div className="inline-flex gap-2">
-                {Array.from({ length: 6 }).map((_, index) => (
+                {Array.from({ length: 5 }).map((_, index) => ( // Changed length to 5 to match max tries
                   <span
                     className={cn([
-                      "size-2 rounded-full bg-[#4A5567] ",
+                      "size-2 rounded-full bg-[#4A5567]",
                       {
-                        "bg-[#7429C6]": tries > index,
+                        "bg-[#7429C6]":
+                          (currentPlayer === 1 ? player1Tries : player2Tries) >
+                          index,
                       },
                     ])}
                     key={`trie-${index}`}
