@@ -13,6 +13,21 @@ type Inputs = {
   message: string;
 };
 
+const companySizeOptions = [
+  { label: "50-100 empleados", value: "50-100" },
+  { label: "101-150 empleados", value: "101-150" },
+  { label: "151-200 empleados", value: "151-200" },
+];
+
+const subjectOptions = [
+  {
+    label: "Desarrollo de Landing Pages",
+    value: "Building Landing pages",
+  },
+  { label: "Desarrollo de E-commerce", value: "Building E-commerce" },
+  { label: "Desarrollo de Dashboards", value: "Building Dashboard" },
+];
+
 export const CardForm = () => {
   const { control, handleSubmit, register } = useForm<Inputs>();
 
@@ -26,20 +41,21 @@ export const CardForm = () => {
       >
         <div className="flex flex-col lg:flex-row gap-[18px] w-full ">
           <div className="w-full">
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="name">Nombre</Label>
             <Input
               id="name"
               name="name"
               control={control}
-              rules={{ required: "Este campa es obligatorio" }}
-              placeholder="Ethan Johnson"
+              rules={{ required: "Este campo es obligatorio" }}
+              placeholder="Tu Nombre"
             />
           </div>
           <div className="w-full">
-            <Label htmlFor="company-email">Company Email</Label>
+            <Label htmlFor="company-email">Email de la empresa</Label>
             <Input
               id="company-email"
-              placeholder="ethan@johnson.com"
+              type="email"
+              placeholder="tu@empresa.com"
               name="company-email"
               control={control}
               rules={{
@@ -54,47 +70,36 @@ export const CardForm = () => {
         </div>
         <div className="flex flex-col lg:flex-row gap-[18px] w-full">
           <div className="w-full">
-            <Label htmlFor="company-size">Company Size</Label>
+            <Label htmlFor="company-size">Tamaño de la empresa</Label>
             <Select
               id="company-size"
               name="company-size"
               control={control}
               rules={{ required: "debe de seleccionar una opción" }}
-              options={[
-                { label: "50-100 employees", value: "50-100" },
-                { label: "101-150 employees", value: "101-150" },
-                { label: "151-200 employees", value: "151-200" },
-              ]}
+              options={companySizeOptions}
             />
           </div>
           <div className="w-full">
-            <Label htmlFor="subject">Subject</Label>
+            <Label htmlFor="subject">Asunto</Label>
             <Select
               id="subject"
               name="subject"
               control={control}
               rules={{ required: "debe de seleccionar una opción" }}
-              options={[
-                {
-                  label: "Building Landing pages",
-                  value: "Building Landing pages",
-                },
-                { label: "Building E-commerce", value: "Building E-commerce" },
-                { label: "Building Dashboard", value: "Building Dashboard" },
-              ]}
+              options={subjectOptions}
             />
           </div>
         </div>
         <div className="w-full">
-          <Label>Message</Label>
+          <Label>Mensaje</Label>
           <textarea
             id="message"
             {...register("message")}
             className="mt-1 w-full ps-3 resize-none rounded-xl h-52 placeholder:text-[#111729]"
-            placeholder="50-100 employees"
+            placeholder="Escribe tu mensaje aquí..."
           ></textarea>
         </div>
-        <Button type="submit">Contact Sales</Button>
+        <Button type="submit">Contactar con ventas</Button>
       </form>
     </div>
   );
