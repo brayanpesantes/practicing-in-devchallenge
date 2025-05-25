@@ -25,7 +25,7 @@ export default function RootLayout({
       lang="en"
       className={`${sora.variable} ${lato.variable} ${poppins.variable} ${beVietnamPro.variable} ${inter.variable} ${outfit.variable} ${dmSans.variable}`}
     >
-      <body className="">{children}</body>
+      <body className={poppins.className}>{children}</body>
     </html>
   );
 }
