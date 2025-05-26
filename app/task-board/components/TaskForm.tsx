@@ -24,13 +24,14 @@ export default function TaskForm() {
   const { title, description, status, icon } = formData;
   return (
     <div
-      className="w-1/2  h-full bg-[#F8FAFC] translate-x-full rounded-xl flex flex-col justify-between py-4 px-6"
+      className="w-full sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 h-full bg-[#F8FAFC] translate-x-full rounded-xl flex flex-col justify-between py-4 px-6"
       onClick={(e) => e.stopPropagation()}
     >
       <div>
         <div className="flex justify-between items-center">
-          <h1 className="text-xl font-medium">Task details</h1>
+          <h1 id="modal-title" className="text-xl font-medium">Task details</h1>
           <button
+            aria-label="Close task details modal"
             className="p-3 ring-1 self-center rounded-lg ring-[#00000033] "
             onClick={closeModal}
           >
@@ -155,7 +156,7 @@ export default function TaskForm() {
           >
             Status
           </Label>
-          <div className="grid grid-cols-2  gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <RadioStatus
               icon={<IconTimeAtack />}
               color="bg-[#E9A23B]"
