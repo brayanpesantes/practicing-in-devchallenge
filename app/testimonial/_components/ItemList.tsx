@@ -9,8 +9,8 @@ type Props = {
 
 export const ItemList: FC<Props> = ({ text, icon = DoneRoundedFill }) => {
   return (
-    <li className="flex items-center gap-2 text-sm text-[#52525A]">
-      <Image src={icon} alt="check image" width={20} height={20} />
+    <li className="flex items-center gap-2 text-sm"> {/* Removed text-[#52525A] */}
+      <Image src={icon} alt="check image" width={20} height={20} className="dark:filter dark:invert" /> {/* Added dark mode filter for icon */}
       <span>{text}</span>
     </li>
   );

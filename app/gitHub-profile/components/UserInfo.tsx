@@ -12,11 +12,11 @@ export default function UserInfo({ userData }: UserInfoProps) {
         <div className="size-[120px] bg-[#364153] rounded-2xl -mt-14 p-2">
           <img
             src={userData?.avatar_url}
-            className="w-full h-full rounded-2xl aspect-square"
-            alt="hola mundo"
+            className="w-full h-full rounded-2xl object-cover" // Added object-cover
+            alt={userData?.name || userData?.login || "User avatar"} // Changed alt text
           />
         </div>
-        <div className="flex flex-col md:flex-row gap-y-3 md:gap-x-5 items-start ">
+        <div className="flex flex-col sm:flex-row gap-y-3 sm:gap-x-4 items-start md:items-center pt-2 md:pt-0"> {/* Adjusted alignment and spacing for info buttons */}
           <InfoButton name="Followers" label={userData.followers ?? 0} />
           <InfoButton name="Following" label={userData.following ?? 0} />
           <InfoButton name="Location" label={userData.location ?? ""} />
