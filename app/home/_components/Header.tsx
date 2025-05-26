@@ -36,12 +36,12 @@ export default function Header({ mode, toggle }: Props) {
     setIsOpen(false);
   };
   return (
-    <header className="py-7 h-20  px-9 lg:px-[72px] relative">
-      <div className="flex flex-row gap-10 justify-between items-center h-full">
+    <header className="py-7 h-20 relative border-b border-gray-200 dark:border-gray-700"> {/* Added bottom border */}
+      <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 flex flex-row gap-10 justify-between items-center h-full"> {/* Applied container and consistent padding */}
         <div className="">
           <Logo mode={mode} />
         </div>
-        <nav className="lg:inline-flex space-x-10 hidden dark:text-[#F2F9FE]">
+        <nav className="lg:inline-flex space-x-8 xl:space-x-10 hidden dark:text-gray-200"> {/* Adjusted spacing & dark text color */}
           {links.map((link, index) => (
             <LinkNavigation
               key={`item-${link.label}`}

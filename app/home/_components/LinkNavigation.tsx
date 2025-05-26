@@ -17,9 +17,11 @@ export default function LinkNavigation({
     <a
       href={href}
       className={cn([
-        "text-[#223344]/70 dark:text-[#909193] text-sm font-bold",
+        "text-sm font-bold transition-colors duration-150 ease-in-out", // Base styles
+        "text-gray-600 dark:text-gray-400", // Default colors for inactive links
+        "hover:text-blue-600 dark:hover:text-blue-400", // Hover styles
         className,
-        { "text-[#111729] dark:text-white": isActive },
+        { "text-blue-600 dark:text-white": isActive }, // Active styles - blue for light, white for dark
       ])}
     >
       {label}
